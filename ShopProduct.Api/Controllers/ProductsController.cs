@@ -9,7 +9,7 @@ using ShopProduct.Api.Repositories.Contracts;
 namespace ShopProduct.Api.Controllers
 {
     [EnableCors]
-    [Route("api/products")]
+    [Route("api/shop/")]
     [ApiController]
     public class ProductsController : Controller
     {
@@ -23,6 +23,7 @@ namespace ShopProduct.Api.Controllers
         }
 
         [HttpGet]
+        [Route("products")]
         public async Task<ActionResult<ProductReadDto>> GetAllProducts()
         {
             try
@@ -46,7 +47,8 @@ namespace ShopProduct.Api.Controllers
             
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("product/{id}")]
         public async Task<ActionResult<ProductReadDto>> GetProduct(int id)
         {
             try
@@ -70,6 +72,7 @@ namespace ShopProduct.Api.Controllers
         }
 
         [HttpPost]
+        [Route("product")]
         public async Task<ActionResult> PostProduct(ProductAddDto productAddDto)
         {
             /*if(this.HttpContext.Request.Method == "OPTIONS")
@@ -92,7 +95,8 @@ namespace ShopProduct.Api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
+        [Route("product/{id}")]
         public async Task<ActionResult> PutProduct(int id, ProductUpdateDto productUpdateDto)
         {
             try
@@ -114,7 +118,8 @@ namespace ShopProduct.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("product/{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
             try
