@@ -81,7 +81,7 @@ namespace ShopProduct.Api.Controllers
 
                await _productRepository.AddProductAsync(product);
 
-                return Ok(); 
+               return Ok(); 
             }
             catch (Exception)
             {
@@ -119,7 +119,7 @@ namespace ShopProduct.Api.Controllers
         {
             try
             {
-                if (id >= 0)
+                if (id >= 1)
                 {
                     await _productRepository.DeleteProductAsync(id);
                     return Ok();
