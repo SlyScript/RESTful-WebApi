@@ -75,11 +75,6 @@ namespace ShopProduct.Api.Controllers
         [Route("product")]
         public async Task<ActionResult> PostProduct(ProductAddDto productAddDto)
         {
-            /*if(this.HttpContext.Request.Method == "OPTIONS")
-            {
-                Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                return Ok();
-            }*/
             try
             {
                var product = _mapper.Map<Product>(productAddDto);
