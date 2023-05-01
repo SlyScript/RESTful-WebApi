@@ -66,7 +66,6 @@ namespace ShopProduct.Api.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retreiving data from the database");
             }
         }
@@ -131,7 +130,6 @@ namespace ShopProduct.Api.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data from the database");
             }
         }

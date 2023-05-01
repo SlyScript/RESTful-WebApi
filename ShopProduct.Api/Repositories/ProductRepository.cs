@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ShopProduct.Api.Data;
-using ShopProduct.Api.Dtos;
 using ShopProduct.Api.Entities;
 using ShopProduct.Api.Repositories.Contracts;
 
