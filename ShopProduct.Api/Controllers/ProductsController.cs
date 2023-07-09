@@ -84,7 +84,6 @@ namespace ShopProduct.Api.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error adding data to the database");
             }
         }
