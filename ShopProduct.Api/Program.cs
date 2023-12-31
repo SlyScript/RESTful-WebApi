@@ -19,7 +19,6 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddDbContextPool<ShopDbContext>(
     opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("ShopDbConnection")));
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

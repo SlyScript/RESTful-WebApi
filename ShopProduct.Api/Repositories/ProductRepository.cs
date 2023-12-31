@@ -30,7 +30,7 @@ namespace ShopProduct.Api.Repositories
 
             if(toDelete == null)
             {
-                throw new ArgumentNullException(nameof(toDelete));
+                throw new ArgumentNullException(nameof(id));
             }
             _context.Products.Remove(toDelete);
             await _context.SaveChangesAsync();
@@ -41,7 +41,7 @@ namespace ShopProduct.Api.Repositories
             var products = await _context.Products.ToListAsync();
             if(products.Count < 1)
             {
-                return products.DefaultIfEmpty();
+                return new List<Product>();
             }
             return products;
         }

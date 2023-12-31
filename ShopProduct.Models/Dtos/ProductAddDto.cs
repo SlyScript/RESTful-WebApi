@@ -15,6 +15,5 @@ namespace ShopProduct.Api.Dtos
 
         [Required]
         public int Quantity { get; set; }
-        public int Id { get; set; }
     }
 }

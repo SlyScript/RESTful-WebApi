@@ -16,23 +16,24 @@ namespace ShopProduct.Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>().HasData(new Product
+            modelBuilder.Entity<Product>().HasData(
+            new Product
             {
                 Id = 1,
                 Name = "Product 1",
                 Description = "Product 1 description",
                 Price = 500,
                 Quantity = 100,
-            });
-            modelBuilder.Entity<Product>().HasData(new Product
+            },
+            new Product
             {
                 Id = 2,
                 Name = "Product 2",
                 Description = "Product 2 description",
                 Price = 200,
                 Quantity = 110,
-            });
-            modelBuilder.Entity<Product>().HasData(new Product
+            },
+            new Product
             {
                 Id = 3,
                 Name = "Product 3",

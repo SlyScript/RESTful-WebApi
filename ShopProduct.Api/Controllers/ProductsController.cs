@@ -30,19 +30,15 @@ namespace ShopProduct.Api.Controllers
             {
                 var products = await _productRepository.GetAllProductsAsync();
 
-                if(products == null)
+                if(!products.Any())
                 {
                     return NotFound();
                 }
-                else
-                {
-                    return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
-                }
+                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
             }
-            catch (Exception)
+            catch (Exception ex) 
             {
-
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retreiving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Products Fetch failed: {ex.Message}");
             }
             
         }
@@ -59,20 +55,17 @@ namespace ShopProduct.Api.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    return Ok(_mapper.Map<ProductReadDto>(product));
-                }
+                return Ok(_mapper.Map<ProductReadDto>(product));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retreiving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Product Fetch failed: {ex.Message}"); 
             }
         }
 
         [HttpPost]
         [Route("product")]
-        public async Task<ActionResult> PostProduct(ProductAddDto productAddDto)
+        public async Task<ActionResult> AddProduct(ProductAddDto productAddDto)
         {
             try
             {
@@ -82,19 +75,24 @@ namespace ShopProduct.Api.Controllers
 
                return Ok(); 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error adding data to the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Product Addition failed: {ex.Message}");
             }
         }
 
         [HttpPut]
         [Route("product/{id}")]
-        public async Task<ActionResult> PutProduct(int id, ProductUpdateDto productUpdateDto)
+        public async Task<ActionResult> UpdateProduct(int id, ProductUpdateDto productUpdateDto)
         {
             try
             {
                 var existingProduct = await _productRepository.GetProductAsync(id);
+
+                if (existingProduct == null)
+                {
+                    return NotFound();
+                }
 
                 existingProduct.Name = productUpdateDto.Name;
                 existingProduct.Description = productUpdateDto.Description;
@@ -105,9 +103,9 @@ namespace ShopProduct.Api.Controllers
                 await _productRepository.UpdateProductAsync(updatedProduct);
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data to the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Product Update failed: {ex.Message}");
             }
         }
 
@@ -122,14 +120,11 @@ namespace ShopProduct.Api.Controllers
                     await _productRepository.DeleteProductAsync(id);
                     return Ok();
                 }
-                else
-                {
-                    return NotFound();
-                }
+                return BadRequest();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Product Delete failed: {ex.Message}");
             }
         }
     }
