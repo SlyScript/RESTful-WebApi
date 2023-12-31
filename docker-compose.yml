@@ -12,7 +12,7 @@ services:
       # OpenTelemetry environmental variables:
       OTEL_SERVICE_NAME: "shopproduct.api"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4318"
-      DB_CONNECTION: "Server=sqlserver,1433;User=sa;Password=123&MightyAlmighty;TrustServerCertificate=True;"
+      DB_CONNECTION: "Server=sqlserver,1433;User=sa;Password=PasswordGoesHere@123;TrustServerCertificate=True;"
     ports:
         - "80:80"
     depends_on:
@@ -23,7 +23,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-CU17-ubuntu-20.04
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=123&MightyAlmighty
+      - SA_PASSWORD=PasswordGoesHere@123
     ports:
       - "1433:1433"
 
